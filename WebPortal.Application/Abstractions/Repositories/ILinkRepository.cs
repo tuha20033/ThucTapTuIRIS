@@ -16,9 +16,8 @@ public interface ILinkRepository
     Task<Link> CreateAsync(Link link, CancellationToken ct = default);
     Task UpdateAsync(Link link, CancellationToken ct = default);
 
-    /// <summary>Soft delete via IsActive=false.</summary>
+  
     Task SetActiveAsync(Guid id, bool isActive, CancellationToken ct = default);
 
-    /// <summary>Hard delete.</summary>
     Task DeleteAsync(Guid id, CancellationToken ct = default);
 }
