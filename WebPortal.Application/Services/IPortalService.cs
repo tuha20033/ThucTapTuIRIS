@@ -19,8 +19,5 @@ public interface IPortalService
     Task SetLinkOrderAsync(IReadOnlyList<Guid> orderedLinkIds, CancellationToken ct = default);
     Task SetCategoryOrderAsync(IReadOnlyList<Guid> orderedCategoryIds, CancellationToken ct = default);
 
-    /// <summary>
-    /// Persist per-user collapse state for a category.
-    /// </summary>
     Task SetCategoryCollapsedAsync(Guid categoryId, bool isCollapsed, CancellationToken ct = default);
 }
