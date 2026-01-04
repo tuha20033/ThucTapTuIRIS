@@ -2,10 +2,7 @@ using System;
 
 namespace WebPortal.Application.Models;
 
-/// <summary>
-/// Mutable model for Blazor forms.
-/// (Do NOT use init-only properties here; Blazor two-way binding needs setters.)
-/// </summary>
+
 public sealed class CategoryUpsertModel
 {
     public Guid? Id { get; set; }
@@ -15,9 +12,7 @@ public sealed class CategoryUpsertModel
     public bool IsActive { get; set; } = true;
 }
 
-/// <summary>
-/// Mutable model for Blazor forms.
-/// </summary>
+
 public sealed class LinkUpsertModel
 {
     public Guid? Id { get; set; }
