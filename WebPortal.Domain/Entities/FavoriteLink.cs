@@ -9,7 +9,7 @@ public sealed class FavoriteLink
 
     public DateTime PinnedAt { get; set; }
 
-    // Navigation
+  
     public User? User { get; set; }
     public Link? Link { get; set; }
 }
