@@ -1,0 +1,28 @@
+@page "/admin"
+@using WebPortal.Application.Common
+@using WebPortal.Application.Abstractions.Security
+@inject IUserContext User
+
+<MudPaper Class="pa-4" Elevation="1">
+    <MudText Typo="Typo.h5">Admin</MudText>
+
+    @if (!User.Roles.Any(r => r.StartsWith(AdminGuard.AdminRolePrefix, StringComparison.OrdinalIgnoreCase)))
+    {
+        <MudAlert Severity="Severity.Error" Class="mt-2">
+            Bạn không có quyền Admin. Cần role bắt đầu bằng <b>@AdminGuard.AdminRolePrefix</b>.
+        </MudAlert>
+    }
+    else
+    {
+        <MudText Typo="Typo.body2">
+            Quản trị viên dùng để cấu hình Category/Link (CRUD) theo yêu cầu hệ thống.
+        </MudText>
+
+        <MudDivider Class="my-2" />
+
+        <MudList T="string">
+            <MudListItem T="string" Href="/admin/categories">Quản lý Category</MudListItem>
+            <MudListItem T="string" Href="/admin/links">Quản lý Link</MudListItem>
+        </MudList>
+    }
+</MudPaper>

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "W2EmdndvQvo=",
+  "success": true,
+  "projectFilePath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\WebPortal.Grpc.Contracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\google.protobuf\\3.25.3\\google.protobuf.3.25.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\grpc.core.api\\2.64.0\\grpc.core.api.2.64.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\grpc.tools\\2.64.0\\grpc.tools.2.64.0.nupkg.sha512"
+  ],
+  "logs": []
+}

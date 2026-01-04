@@ -1,0 +1,14 @@
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\bin\Debug\net8.0\WebPortal.Grpc.Contracts.deps.json
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\bin\Debug\net8.0\WebPortal.Grpc.Contracts.dll
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\bin\Debug\net8.0\WebPortal.Grpc.Contracts.pdb
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\bin\Debug\net8.0\WebPortal.Grpc.Contracts.xml
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.csproj.AssemblyReference.cache
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.AssemblyInfoInputs.cache
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.AssemblyInfo.cs
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.csproj.CoreCompileInputs.cache
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.dll
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\refint\WebPortal.Grpc.Contracts.dll
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.xml
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\WebPortal.Grpc.Contracts.pdb
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Grpc.Contracts\obj\Debug\net8.0\ref\WebPortal.Grpc.Contracts.dll

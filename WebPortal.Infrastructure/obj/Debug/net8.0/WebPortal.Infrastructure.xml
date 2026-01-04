@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebPortal.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:WebPortal.Infrastructure.Caching.HybridCacheService">
+            <summary>
+            Cache service backed by Redis (preferred) with an in-memory fallback.
+            The portal uses cache for:
+            - active catalog (Categories/Links)
+            - user workspace (Favorites/Orders)
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category {
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 12px;
+  background: white;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.link-card .link-title {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-card .link-title:hover {
+  text-decoration: underline;
+}
+
+.link-color {
+  width: 6px;
+  height: 24px;
+  border-radius: 3px;
+}
+
+.link-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.category-header {
+  user-select: none;
+}

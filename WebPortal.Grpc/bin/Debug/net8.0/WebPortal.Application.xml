@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebPortal.Application</name>
+    </assembly>
+    <members>
+        <member name="T:WebPortal.Application.Abstractions.Caching.ICacheService">
+            <summary>
+            Small cache abstraction. Backed by Redis in Infrastructure with an in-memory fallback.
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Caching.ICacheService.GetOrCreateAsync``1(System.String,System.TimeSpan,System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Gets cached value if available; otherwise executes factory, caches and returns the result.
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.ICategoryRepository.SetActiveAsync(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>Soft delete via IsActive=false.</summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.ICategoryRepository.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Hard delete. Will throw if constrained by existing child records (e.g. links).
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.ILinkRepository.SetActiveAsync(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>Soft delete via IsActive=false.</summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.ILinkRepository.DeleteAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Hard delete.</summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.IUserRepository.EnsureUserAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Ensures a user exists. If not exists, it creates a minimal record.
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.IWorkspaceRepository.GetCategoryStatesAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Per-user collapse/expand state for categories.
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.IWorkspaceRepository.SetCategoryCollapsedAsync(System.String,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Persists the category collapse state for the user.
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.IWorkspaceRepository.SetLinkOrderAsync(System.String,System.Collections.Generic.IReadOnlyList{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Replaces the user's order for the provided link ids. Existing sequences for these links are updated/created.
+            Links not included are left unchanged (they will fall back to default Priority on display).
+            </summary>
+        </member>
+        <member name="M:WebPortal.Application.Abstractions.Repositories.IWorkspaceRepository.SetCategoryOrderAsync(System.String,System.Collections.Generic.IReadOnlyList{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Replaces the user's order for the provided category ids.
+            Categories not included are left unchanged (they will fall back to default Priority on display).
+            </summary>
+        </member>
+        <member name="T:WebPortal.Application.Abstractions.Security.IUserContext">
+            <summary>
+            Provides the current user identity and roles from the host (Web/Grpc).
+            In production this should read from authentication/claims, not from client input.
+            </summary>
+        </member>
+        <member name="T:WebPortal.Application.Common.AdminGuard">
+            <summary>
+            Simple admin authorization guard for catalog management.
+            
+            SRS: "Quản trị viên (Admin): Cấu hình danh mục, quản lý liên kết và giám sát hệ thống.".
+            
+            Default rule: user must have a role that starts with <see cref="F:WebPortal.Application.Common.AdminGuard.AdminRolePrefix"/>.
+            You can change this by setting configuration "PortalAdmin:RolePrefix" in hosts
+            and feeding it into a custom guard if needed.
+            </summary>
+        </member>
+        <member name="F:WebPortal.Application.Common.AdminGuard.AdminRolePrefix">
+            <summary>
+            Default role prefix that grants admin access.
+            Example: PORTAL_ADMIN, PORTAL_ADMIN_READ...
+            </summary>
+        </member>
+        <member name="T:WebPortal.Application.Models.CategoryUpsertModel">
+            <summary>
+            Mutable model for Blazor forms.
+            (Do NOT use init-only properties here; Blazor two-way binding needs setters.)
+            </summary>
+        </member>
+        <member name="T:WebPortal.Application.Models.LinkUpsertModel">
+            <summary>
+            Mutable model for Blazor forms.
+            </summary>
+        </member>
+        <member name="P:WebPortal.Application.Models.PortalModel.PinnedLinks">
+            <summary>Pinned links shown at the top of the portal.</summary>
+        </member>
+        <member name="P:WebPortal.Application.Models.PortalLinkModel.Domain">
+            <summary>Domain/host extracted from Url for hover preview.</summary>
+        </member>
+        <member name="M:WebPortal.Application.Services.ICatalogAdminService.DeleteCategoryAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Hard delete (will throw if constrained; e.g. category has links).</summary>
+        </member>
+        <member name="M:WebPortal.Application.Services.ICatalogAdminService.DeleteLinkAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>Hard delete.</summary>
+        </member>
+        <member name="M:WebPortal.Application.Services.IPortalService.SetCategoryCollapsedAsync(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Persist per-user collapse state for a category.
+            </summary>
+        </member>
+    </members>
+</doc>

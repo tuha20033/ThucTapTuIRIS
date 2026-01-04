@@ -1,0 +1,100 @@
+@page "/admin/monitor"
+@inject ISystemMonitorService MonitorService
+@inject WebPortal.Application.Abstractions.Security.IUserContext User
+
+<PageTitle>System Monitor</PageTitle>
+
+@if (!IsAdmin)
+{
+    <MudAlert Severity="Severity.Error">Bạn không có quyền truy cập trang Admin.</MudAlert>
+}
+else
+{
+    <MudPaper Class="pa-4" Elevation="1">
+        <MudStack Spacing="2">
+            <MudStack Direction="Row" AlignItems="AlignItems.Center" Spacing="2">
+                <MudText Typo="Typo.h5">Giám sát hệ thống</MudText>
+                <MudSpacer />
+                <MudButton Variant="Variant.Filled" OnClick="ReloadAsync" Disabled="@_loading">
+                    @(_loading ? "Đang tải..." : "Tải lại")
+                </MudButton>
+            </MudStack>
+
+            @if (_error is not null)
+            {
+                <MudAlert Severity="Severity.Error">@_error</MudAlert>
+            }
+
+            @if (_status is null)
+            {
+                <MudText>Chưa có dữ liệu.</MudText>
+            }
+            else
+            {
+                <MudTable Dense="true" Bordered="true" Hover="true" Items="_rows">
+                    <HeaderContent>
+                        <MudTh>Chỉ số</MudTh>
+                        <MudTh>Giá trị</MudTh>
+                    </HeaderContent>
+                    <RowTemplate Context="row">
+                        <MudTd>@row.Key</MudTd>
+                        <MudTd>@row.Value</MudTd>
+                    </RowTemplate>
+                </MudTable>
+
+                <MudText Typo="Typo.caption">
+                    Health endpoint: <b>/healthz</b>
+                </MudText>
+            }
+        </MudStack>
+    </MudPaper>
+}
+
+@code {
+    private bool IsAdmin =>
+        User.Roles != null &&
+        User.Roles.Any(r => string.Equals(r, "Admin", StringComparison.OrdinalIgnoreCase));
+
+    private SystemStatusModel? _status;
+    private bool _loading;
+    private string? _error;
+
+    private List<KeyValuePair<string, string>> _rows = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (IsAdmin)
+            await ReloadAsync();
+    }
+
+    private async Task ReloadAsync()
+    {
+        try
+        {
+            _error = null;
+            _loading = true;
+
+            _status = await MonitorService.GetStatusAsync();
+            _rows = new()
+            {
+                new("UTC Now", _status.UtcNow.ToString("O")),
+                new("Uptime", _status.Uptime.ToString()),
+                new("Version", _status.Version),
+                new("Database", _status.DatabaseOk ? "OK" : "DOWN"),
+                new("Redis", _status.RedisOk ? "OK" : "OFF/ERROR"),
+                new("Users", _status.Users.ToString()),
+                new("Categories", _status.Categories.ToString()),
+                new("Links", _status.Links.ToString()),
+                new("FavoriteLinks", _status.FavoriteLinks.ToString()),
+            };
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+}

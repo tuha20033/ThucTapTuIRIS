@@ -1,0 +1,199 @@
+@page "/admin/links"
+@using WebPortal.Application.Common
+@using WebPortal.Application.Abstractions.Security
+@inject ICatalogAdminService Admin
+@inject IUserContext User
+
+<MudPaper Class="pa-4" Elevation="1">
+    <MudStack Spacing="2">
+        <MudText Typo="Typo.h5">Quản lý Link</MudText>
+
+        @if (!User.Roles.Any(r => r.StartsWith(AdminGuard.AdminRolePrefix, StringComparison.OrdinalIgnoreCase)))
+        {
+            <MudAlert Severity="Severity.Error">
+                Bạn không có quyền Admin. Cần role bắt đầu bằng <b>@AdminGuard.AdminRolePrefix</b>.
+            </MudAlert>
+        }
+        else
+        {
+
+        @if (_error is not null)
+        {
+            <MudAlert Severity="Severity.Error">@_error</MudAlert>
+        }
+
+        <MudStack Direction="Row" Spacing="2" AlignItems="AlignItems.Center">
+            <MudTextField T="string" @bind-Value="_form.Name" Label="Name" Variant="Variant.Outlined" Required="true" />
+            <MudTextField @bind-Value="_form.Url" Label="Url" Variant="Variant.Outlined" Required="true" />
+            <MudTextField @bind-Value="_form.RolePrefix" Label="RolePrefix" Variant="Variant.Outlined" Required="true" />
+            <MudSelect T="Guid" @bind-Value="_form.CategoryId" Label="Category" Variant="Variant.Outlined">
+                @foreach (var c in _categories)
+                {
+                    <MudSelectItem T="Guid" Value="@c.Id">@c.Name</MudSelectItem>
+                }
+            </MudSelect>
+        </MudStack>
+
+        <MudStack Direction="Row" Spacing="2" AlignItems="AlignItems.Center">
+            <MudTextField T="string" @bind-Value="_form.Icon" Label="Icon (class/svg/url)" Variant="Variant.Outlined" />
+            <MudTextField @bind-Value="_form.Color" Label="Color" Variant="Variant.Outlined" />
+            <MudTextField @bind-Value="_form.Tags" Label="Tags" Variant="Variant.Outlined" />
+            <MudNumericField T="int" @bind-Value="_form.Priority" Label="Priority" Variant="Variant.Outlined" />
+            <MudSwitch T="bool" @bind-Value="_form.IsActive">Active</MudSwitch>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveAsync">Save</MudButton>
+            <MudButton Variant="Variant.Outlined" OnClick="ClearForm">Clear</MudButton>
+        </MudStack>
+
+        <MudDivider Class="my-2" />
+
+        <MudTable Items="_items" Dense="true" Hover="true" Bordered="true">
+            <HeaderContent>
+                <MudTh>Name</MudTh>
+                <MudTh>Url</MudTh>
+                <MudTh>RolePrefix</MudTh>
+                <MudTh>Category</MudTh>
+                <MudTh>Active</MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate Context="context">
+                <MudTd>@context.Name</MudTd>
+                <MudTd><span title="@context.Url">@Short(context.Url)</span></MudTd>
+                <MudTd>@context.RolePrefix</MudTd>
+                <MudTd>@CategoryName(context.CategoryId)</MudTd>
+                <MudTd>@context.IsActive</MudTd>
+                <MudTd>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="() => Edit(context)">Edit</MudButton>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="() => ToggleActiveAsync(context.Id, !context.IsActive)">
+                        @(context.IsActive ? "Deactivate" : "Activate")
+                    </MudButton>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" Color="Color.Error"
+                               OnClick="() => DeleteAsync(context.Id)">
+                        Delete
+                    </MudButton>
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+        }
+    </MudStack>
+</MudPaper>
+
+@code {
+    private List<WebPortal.Domain.Entities.Link> _items = new();
+    private List<WebPortal.Domain.Entities.Category> _categories = new();
+    private string? _error;
+
+    private LinkUpsertModel _form = new()
+    {
+        Name = "",
+        Url = "",
+        Icon = null,
+        Color = null,
+        Tags = null,
+        Priority = 0,
+        RolePrefix = "",
+        IsActive = true,
+        CategoryId = Guid.Empty
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (User.Roles.Any(r => r.StartsWith(AdminGuard.AdminRolePrefix, StringComparison.OrdinalIgnoreCase)))
+            await ReloadAsync();
+    }
+
+    private async Task ReloadAsync()
+    {
+        _error = null;
+        _categories = (await Admin.GetCategoriesAsync()).ToList();
+        _items = (await Admin.GetLinksAsync()).ToList();
+
+        if (_form.CategoryId == Guid.Empty && _categories.Count > 0)
+            _form.CategoryId = _categories[0].Id;
+    }
+
+    private void Edit(WebPortal.Domain.Entities.Link l)
+    {
+        _form = new LinkUpsertModel
+        {
+            Id = l.Id,
+            Name = l.Name,
+            Url = l.Url,
+            Icon = l.Icon,
+            Color = l.Color,
+            Tags = l.Tags,
+            Priority = l.Priority,
+            RolePrefix = l.RolePrefix,
+            IsActive = l.IsActive,
+            CategoryId = l.CategoryId
+        };
+    }
+
+    private void ClearForm()
+    {
+        var defaultCategory = _categories.Count > 0 ? _categories[0].Id : Guid.Empty;
+
+        _form = new LinkUpsertModel
+        {
+            Id = null,
+            Name = "",
+            Url = "",
+            Icon = null,
+            Color = null,
+            Tags = null,
+            Priority = 0,
+            RolePrefix = "",
+            IsActive = true,
+            CategoryId = defaultCategory
+        };
+    }
+
+    private async Task SaveAsync()
+    {
+        try
+        {
+            _error = null;
+            await Admin.UpsertLinkAsync(_form);
+            ClearForm();
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private async Task ToggleActiveAsync(Guid id, bool isActive)
+    {
+        try
+        {
+            _error = null;
+            await Admin.SetLinkActiveAsync(id, isActive);
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private async Task DeleteAsync(Guid id)
+    {
+        try
+        {
+            _error = null;
+            await Admin.DeleteLinkAsync(id);
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private string CategoryName(Guid id)
+        => _categories.FirstOrDefault(c => c.Id == id)?.Name ?? id.ToString();
+
+    private static string Short(string s)
+        => s.Length <= 40 ? s : s[..40] + "...";
+}

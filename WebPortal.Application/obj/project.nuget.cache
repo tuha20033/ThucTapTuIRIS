@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "IyNHo3kpvR4=",
+  "success": true,
+  "projectFilePath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

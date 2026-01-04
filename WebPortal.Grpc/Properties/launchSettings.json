@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "WebPortal.Grpc": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5160;https://localhost:7160"
+    }
+  }
+}

@@ -1,0 +1,454 @@
+@page "/"
+@inject IPortalService PortalService
+@inject IJSRuntime JS
+
+@using WebPortal.Web.UI
+
+<PageTitle>WebPortal</PageTitle>
+
+<MudPaper Class="pa-4" Elevation="1">
+    <MudStack Spacing="2">
+        <MudText Typo="Typo.h5">Portal</MudText>
+
+        <MudStack Direction="Row" Spacing="2" AlignItems="AlignItems.Center">
+            <MudTextField @bind-Value="_searchText"
+                          Placeholder="Tìm theo tên, tag, nhóm... (nhấn / để focus)"
+                          Immediate="true"
+                          Id="global-search"
+                          Variant="Variant.Outlined"
+                          Adornment="Adornment.Start"
+                          AdornmentIcon="@Icons.Material.Filled.Search"
+                          OnKeyDown="OnSearchKeyDown" />
+
+            <MudButton Variant="Variant.Filled" OnClick="ReloadAsync" Disabled="@_loading">
+                @(_loading ? "Đang tải..." : "Tải lại")
+            </MudButton>
+
+            <MudSpacer />
+
+            <MudToggleIconButton Toggled="@(_model is not null && _model.ViewMode == ViewMode.List)"
+                                 ToggledChanged="OnToggleViewMode"
+                                 Icon="@Icons.Material.Filled.GridView"
+                                 ToggledIcon="@Icons.Material.Filled.ViewList"
+                                 Title="Grid/List" />
+        </MudStack>
+
+        @if (_error is not null)
+        {
+            <MudAlert Severity="Severity.Error">@_error</MudAlert>
+        }
+
+        @if (_model is null)
+        {
+            <MudText>Chưa có dữ liệu.</MudText>
+        }
+        else
+        {
+            @if (_model.PinnedLinks.Count > 0)
+            {
+                <MudDivider Class="my-2" />
+                <MudText Typo="Typo.h6">Đã ghim</MudText>
+
+                @if (_model.ViewMode == ViewMode.Grid)
+                {
+                    <div class="grid">
+                        @foreach (var l in _model.PinnedLinks)
+                        {
+                            @LinkCard(l, pinnedSection: true)
+                        }
+                    </div>
+                }
+                else
+                {
+                    <MudTable Items="_model.PinnedLinks" Dense="true" Hover="true">
+                        <HeaderContent>
+                            <MudTh>Tên</MudTh>
+                            <MudTh>Domain</MudTh>
+                            <MudTh>Tag</MudTh>
+                            <MudTh></MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd DataLabel="Tên">
+                                <a href="@context.Url" target="_blank" rel="noopener noreferrer">@context.Name</a>
+                            </MudTd>
+                            <MudTd DataLabel="Domain">@context.Domain</MudTd>
+                            <MudTd DataLabel="Tag">@context.Tags</MudTd>
+                            <MudTd>
+                                <MudIconButton Icon="@Icons.Material.Filled.PushPin" Color="Color.Primary"
+                                               OnClick="() => UnpinAsync(context.Id)" />
+                            </MudTd>
+                        </RowTemplate>
+                    </MudTable>
+                }
+            }
+
+            <MudDivider Class="my-4" />
+
+            <MudText Typo="Typo.h6">
+                Categories (kéo-thả để sắp xếp)
+            </MudText>
+
+            <MudText Typo="Typo.caption">
+                Tip: bạn có thể kéo Category hoặc Link để đổi thứ tự. UI cập nhật ngay (Optimistic Update) và lưu xuống server.
+            </MudText>
+
+            <div class="categories">
+                @foreach (var c in _model.Categories)
+                {
+                    <div class="category"
+                         draggable="true"
+                         @ondragstart="() => OnCategoryDragStart(c.Id)"
+                         @ondragover:preventDefault="true"
+                         @ondrop="() => OnCategoryDropAsync(c.Id)">
+                        <div class="category-header">
+                            <MudIcon Icon="@Icons.Material.Filled.DragIndicator" />
+                            <MudText Typo="Typo.h6">@c.Name</MudText>
+
+                            <MudIconButton Icon="@(c.IsCollapsed? Icons.Material.Filled.ChevronRight : Icons.Material.Filled.ExpandMore)"
+                                           Size="Size.Small"
+                                           Title="@(c.IsCollapsed ? "Mở rộng" : "Thu gọn")"
+                                           OnClick="() => ToggleCategoryCollapseAsync(c.Id)" />
+
+                            <MudSpacer />
+                            <MudText Typo="Typo.caption">@c.Description</MudText>
+                        </div>
+
+                        <MudCollapse Expanded="@(!c.IsCollapsed)">
+                            @if (_model.ViewMode == ViewMode.Grid)
+                            {
+                                <div class="grid">
+                                    @foreach (var l in c.Links)
+                                    {
+                                        <div draggable="true"
+                                             @ondragstart="() => OnLinkDragStart(c.Id, l.Id)"
+                                             @ondragover:preventDefault="true"
+                                             @ondrop="() => OnLinkDropAsync(c.Id, l.Id)">
+                                            @LinkCard(l, pinnedSection: false)
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <MudTable Items="c.Links" Dense="true" Hover="true">
+                                    <HeaderContent>
+                                        <MudTh>Tên</MudTh>
+                                        <MudTh>Domain</MudTh>
+                                        <MudTh>Tag</MudTh>
+                                        <MudTh></MudTh>
+                                    </HeaderContent>
+                                    <RowTemplate>
+                                        <MudTd>
+                                            <a href="@context.Url" target="_blank" rel="noopener noreferrer">@context.Name</a>
+                                        </MudTd>
+                                        <MudTd>@context.Domain</MudTd>
+                                        <MudTd>@context.Tags</MudTd>
+                                        <MudTd>
+                                            @if (context.IsPinned)
+                                            {
+                                                <MudIconButton Icon="@Icons.Material.Filled.PushPin" Color="Color.Primary"
+                                                               OnClick="() => UnpinAsync(context.Id)" />
+                                            }
+                                            else
+                                            {
+                                                <MudIconButton Icon="@Icons.Material.Filled.PushPin" Color="Color.Default"
+                                                               OnClick="() => PinAsync(context.Id)" />
+                                            }
+                                        </MudTd>
+                                    </RowTemplate>
+                                </MudTable>
+                            }
+                        </MudCollapse>
+                    </div>
+
+                }
+            </div>
+        }
+    </MudStack>
+</MudPaper>
+
+@code {
+    private PortalModel? _model;
+    private bool _loading;
+    private string? _error;
+    private string _searchText = "";
+
+    private Guid? _dragCategoryId;
+    private Guid? _dragLinkId;
+    private Guid? _dragLinkCategoryId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ReloadAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Register hotkey "/" to focus the global search input.
+            await JS.InvokeVoidAsync("webportalHotkeys.registerSearchSlash", "global-search");
+        }
+    }
+
+    private async Task ReloadAsync()
+    {
+        try
+        {
+            _error = null;
+            _loading = true;
+            _model = await PortalService.GetPortalAsync(_searchText);
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private async Task OnToggleViewMode(bool listMode)
+    {
+        if (_model is null) return;
+
+        var target = listMode ? ViewMode.List : ViewMode.Grid;
+
+        // Optimistic update
+        var prev = _model.ViewMode;
+        _model = _model with { ViewMode = target };
+
+        try
+        {
+            await PortalService.SetViewModeAsync(target);
+        }
+        catch (Exception ex)
+        {
+            _model = _model with { ViewMode = prev };
+            _error = ex.Message;
+        }
+    }
+
+    private async Task PinAsync(Guid linkId)
+    {
+        if (_model is null) return;
+
+        try
+        {
+            await PortalService.PinAsync(linkId);
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private async Task UnpinAsync(Guid linkId)
+    {
+        if (_model is null) return;
+
+        try
+        {
+            await PortalService.UnpinAsync(linkId);
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private void OnDragOver(DragEventArgs e) { /* handled by @ondragover:preventDefault */ }
+
+    private async Task ToggleCategoryCollapseAsync(Guid categoryId)
+    {
+        if (_model is null) return;
+
+        var prev = _model.Categories.ToList();
+        var next = prev.Select(c => c.Id == categoryId ? c with { IsCollapsed = !c.IsCollapsed } : c).ToList();
+
+        // Optimistic
+        _model = _model with { Categories = next };
+
+        try
+        {
+            var target = next.First(x => x.Id == categoryId).IsCollapsed;
+            await PortalService.SetCategoryCollapsedAsync(categoryId, target);
+        }
+        catch (Exception ex)
+        {
+            _model = _model with { Categories = prev };
+            _error = ex.Message;
+        }
+    }
+
+    private void OnCategoryDragStart(Guid categoryId)
+    {
+        _dragCategoryId = categoryId;
+    }
+
+    private async Task OnCategoryDropAsync(Guid targetCategoryId)
+    {
+        if (_model is null) return;
+        if (_dragCategoryId is null || _dragCategoryId == targetCategoryId) return;
+
+        var prev = _model.Categories.ToList();
+
+        // Optimistic reorder
+        var reordered = MoveItem(prev, _dragCategoryId.Value, targetCategoryId, c => c.Id);
+        _model = _model with { Categories = reordered };
+
+        try
+        {
+            await PortalService.SetCategoryOrderAsync(reordered.Select(c => c.Id).ToList());
+        }
+        catch (Exception ex)
+        {
+            _model = _model with { Categories = prev };
+            _error = ex.Message;
+        }
+        finally
+        {
+            _dragCategoryId = null;
+        }
+    }
+
+    private void OnLinkDragStart(Guid categoryId, Guid linkId)
+    {
+        _dragLinkCategoryId = categoryId;
+        _dragLinkId = linkId;
+    }
+
+    private async Task OnLinkDropAsync(Guid categoryId, Guid targetLinkId)
+    {
+        if (_model is null) return;
+        if (_dragLinkId is null) return;
+        if (_dragLinkCategoryId != categoryId) return; // only reorder within same category
+        if (_dragLinkId == targetLinkId) return;
+
+        var cat = _model.Categories.FirstOrDefault(x => x.Id == categoryId);
+        if (cat is null) return;
+
+        var prevLinks = cat.Links.ToList();
+
+        var reorderedLinks = MoveItem(prevLinks, _dragLinkId.Value, targetLinkId, l => l.Id);
+
+        // Optimistic update
+        var newCategories = _model.Categories.Select(c =>
+            c.Id == categoryId ? c with { Links = reorderedLinks } : c
+        ).ToList();
+
+        _model = _model with { Categories = newCategories };
+
+        try
+        {
+            await PortalService.SetLinkOrderAsync(reorderedLinks.Select(l => l.Id).ToList());
+        }
+        catch (Exception ex)
+        {
+            // Rollback
+            newCategories = _model.Categories.Select(c =>
+                c.Id == categoryId ? c with { Links = prevLinks } : c
+            ).ToList();
+            _model = _model with { Categories = newCategories };
+            _error = ex.Message;
+        }
+        finally
+        {
+            _dragLinkId = null;
+            _dragLinkCategoryId = null;
+        }
+    }
+
+    private RenderFragment LinkCard(PortalLinkModel l, bool pinnedSection) => @<MudPaper Class="pa-3 link-card" Elevation="1">
+        <MudStack Spacing="1">
+            <MudStack Direction="Row" AlignItems="AlignItems.Center" Spacing="1">
+                @if (!string.IsNullOrWhiteSpace(l.Color))
+                {
+                    <div class="link-color" style="background:@l.Color"></div>
+                }
+
+                @if (IconHelper.IsImageUrl(l.Icon))
+                {
+                    <img src="@l.Icon" class="link-icon" alt="" />
+                }
+                else if (!string.IsNullOrWhiteSpace(l.Icon))
+                {
+                    <MudIcon Icon="@IconHelper.ResolveMudIcon(l.Icon)" Style="@(string.IsNullOrWhiteSpace(l.Color) ? null : $"color:{l.Color}")" />
+                }
+                <MudTooltip Text="@($"Domain: {l.Domain}\nTags: {l.Tags}")">
+                    <a href="@l.Url" target="_blank" rel="noopener noreferrer" class="link-title">@l.Name</a>
+                </MudTooltip>
+                <MudSpacer />
+                @if (l.IsPinned)
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.PushPin" Color="Color.Primary" Size="Size.Small"
+                                   OnClick="() => UnpinAsync(l.Id)" />
+                }
+                else
+                {
+                    <MudIconButton Icon="@Icons.Material.Filled.PushPin" Color="Color.Default" Size="Size.Small"
+                                   OnClick="() => PinAsync(l.Id)" />
+                }
+            </MudStack>
+            <MudText Typo="Typo.caption">@l.Domain</MudText>
+            @if (!string.IsNullOrWhiteSpace(l.Tags))
+            {
+                <MudText Typo="Typo.caption">#@l.Tags</MudText>
+            }
+        </MudStack>
+    </MudPaper>;
+
+    private static List<T> MoveItem<T, TKey>(List<T> list, TKey draggedId, TKey targetId, Func<T, TKey> key)
+        where TKey : notnull
+    {
+        var fromIndex = list.FindIndex(x => EqualityComparer<TKey>.Default.Equals(key(x), draggedId));
+        var toIndex = list.FindIndex(x => EqualityComparer<TKey>.Default.Equals(key(x), targetId));
+        if (fromIndex < 0 || toIndex < 0) return list;
+
+        var item = list[fromIndex];
+        list.RemoveAt(fromIndex);
+
+        if (toIndex > fromIndex) toIndex--;
+        list.Insert(toIndex, item);
+        return list;
+    }
+
+    private async Task OnSearchKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await ReloadAsync();
+        }
+    }
+    private async Task ToggleCategoryCollapsedAsync(Guid categoryId)
+{
+    if (_model is null) return;
+
+    var categories = _model.Categories.ToList();
+    var idx = categories.FindIndex(x => x.Id == categoryId);
+    if (idx < 0) return;
+
+    var prev = categories[idx];
+    var next = prev with { IsCollapsed = !prev.IsCollapsed };
+
+    // Optimistic update (UI đổi ngay)
+    categories[idx] = next;
+    _model = _model with { Categories = categories };
+
+    try
+    {
+        await PortalService.SetCategoryCollapsedAsync(categoryId, next.IsCollapsed);
+    }
+    catch (Exception ex)
+    {
+        // rollback
+        categories[idx] = prev;
+        _model = _model with { Categories = categories };
+        _error = ex.Message;
+    }
+}
+
+}

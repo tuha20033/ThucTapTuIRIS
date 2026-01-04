@@ -1,0 +1,17 @@
+@using WebPortal.Application.Common
+@using WebPortal.Application.Abstractions.Security
+@inject IUserContext User
+
+<MudNavMenu>
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Dashboard">Portal</MudNavLink>
+
+    @if (User.Roles.Any(r => r.StartsWith(AdminGuard.AdminRolePrefix, StringComparison.OrdinalIgnoreCase)))
+    {
+        <MudNavGroup Title="Admin" Icon="@Icons.Material.Filled.AdminPanelSettings" Expanded="true">
+            <MudNavLink Href="admin" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Settings">Overview</MudNavLink>
+            <MudNavLink Href="admin/categories" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Category">Categories</MudNavLink>
+            <MudNavLink Href="admin/links" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Link">Links</MudNavLink>
+            <MudNavLink Href="admin/monitor" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Assessment">Monitor</MudNavLink>
+        </MudNavGroup>
+    }
+</MudNavMenu>

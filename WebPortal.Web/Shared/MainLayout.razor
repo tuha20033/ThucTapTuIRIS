@@ -1,0 +1,24 @@
+@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h6">WebPortal</MudText>
+        <MudSpacer />
+        <MudText Typo="Typo.body2">Entry Point nội bộ</MudText>
+    </MudAppBar>
+
+    <MudDrawer Open="true" Variant="DrawerVariant.Mini" Elevation="1">
+        <NavMenu />
+    </MudDrawer>
+
+    <MudMainContent Class="pa-4">
+        @Body
+    </MudMainContent>
+</MudLayout>

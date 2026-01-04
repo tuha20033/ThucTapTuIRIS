@@ -1,0 +1,13 @@
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\bin\Debug\net8.0\WebPortal.Domain.deps.json
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\bin\Debug\net8.0\WebPortal.Domain.dll
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\bin\Debug\net8.0\WebPortal.Domain.pdb
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\bin\Debug\net8.0\WebPortal.Domain.xml
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.AssemblyInfoInputs.cache
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.AssemblyInfo.cs
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.csproj.CoreCompileInputs.cache
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.dll
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\refint\WebPortal.Domain.dll
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.xml
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\WebPortal.Domain.pdb
+E:\WebPortal.FullStack.CleanArchitecture.v6\WebPortal\WebPortal.Domain\obj\Debug\net8.0\ref\WebPortal.Domain.dll

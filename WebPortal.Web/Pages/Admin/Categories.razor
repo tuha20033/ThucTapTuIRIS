@@ -1,0 +1,156 @@
+@page "/admin/categories"
+@using WebPortal.Application.Common
+@using WebPortal.Application.Abstractions.Security
+@inject ICatalogAdminService Admin
+@inject IUserContext User
+
+<MudPaper Class="pa-4" Elevation="1">
+    <MudStack Spacing="2">
+        <MudText Typo="Typo.h5">Quản lý Category</MudText>
+
+        @if (!User.Roles.Any(r => r.StartsWith(AdminGuard.AdminRolePrefix, StringComparison.OrdinalIgnoreCase)))
+        {
+            <MudAlert Severity="Severity.Error">
+                Bạn không có quyền Admin. Cần role bắt đầu bằng <b>@AdminGuard.AdminRolePrefix</b>.
+            </MudAlert>
+        }
+        else
+        {
+
+        @if (_error is not null)
+        {
+            <MudAlert Severity="Severity.Error">@_error</MudAlert>
+        }
+
+        <MudStack Direction="Row" Spacing="2" AlignItems="AlignItems.Center">
+            <MudTextField T="string" @bind-Value="_form.Name" Label="Name" Variant="Variant.Outlined" Required="true" />
+            <MudTextField T="string" @bind-Value="_form.Description" Label="Description" Variant="Variant.Outlined" />
+            <MudNumericField T="int" @bind-Value="_form.Priority" Label="Priority" Variant="Variant.Outlined" />
+            <MudSwitch T="bool" @bind-Value="_form.IsActive">Active</MudSwitch>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveAsync">Save</MudButton>
+            <MudButton Variant="Variant.Outlined" OnClick="ClearForm">Clear</MudButton>
+        </MudStack>
+
+        <MudDivider Class="my-2" />
+
+        <MudTable Items="_items" Dense="true" Hover="true" Bordered="true">
+            <HeaderContent>
+                <MudTh>Name</MudTh>
+                <MudTh>Description</MudTh>
+                <MudTh>Priority</MudTh>
+                <MudTh>Active</MudTh>
+                <MudTh></MudTh>
+            </HeaderContent>
+            <RowTemplate Context="context">
+                <MudTd>@context.Name</MudTd>
+                <MudTd>@context.Description</MudTd>
+                <MudTd>@context.Priority</MudTd>
+                <MudTd>@context.IsActive</MudTd>
+                <MudTd>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="() => Edit(context)">Edit</MudButton>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" OnClick="() => ToggleActiveAsync(context.Id, !context.IsActive)">
+                        @(context.IsActive ? "Deactivate" : "Activate")
+                    </MudButton>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" Color="Color.Error"
+                               OnClick="() => DeleteAsync(context.Id)">
+                        Delete
+                    </MudButton>
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+        }
+    </MudStack>
+</MudPaper>
+
+@code {
+    private List<WebPortal.Domain.Entities.Category> _items = new();
+    private string? _error;
+
+    private CategoryUpsertModel _form = new()
+    {
+        Name = "",
+        Description = null,
+        Priority = 0,
+        IsActive = true
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (User.Roles.Any(r => r.StartsWith(AdminGuard.AdminRolePrefix, StringComparison.OrdinalIgnoreCase)))
+            await ReloadAsync();
+    }
+
+    private async Task ReloadAsync()
+    {
+        _error = null;
+        _items = (await Admin.GetCategoriesAsync()).ToList();
+    }
+
+    private void Edit(WebPortal.Domain.Entities.Category c)
+    {
+        _form = new CategoryUpsertModel
+        {
+            Id = c.Id,
+            Name = c.Name,
+            Description = c.Description,
+            Priority = c.Priority,
+            IsActive = c.IsActive
+        };
+    }
+
+    private void ClearForm()
+    {
+        _form = new CategoryUpsertModel
+        {
+            Id = null,
+            Name = "",
+            Description = null,
+            Priority = 0,
+            IsActive = true
+        };
+    }
+
+    private async Task SaveAsync()
+    {
+        try
+        {
+            _error = null;
+            await Admin.UpsertCategoryAsync(_form);
+            ClearForm();
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private async Task ToggleActiveAsync(Guid id, bool isActive)
+    {
+        try
+        {
+            _error = null;
+            await Admin.SetCategoryActiveAsync(id, isActive);
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+
+    private async Task DeleteAsync(Guid id)
+    {
+        try
+        {
+            _error = null;
+            await Admin.DeleteCategoryAsync(id);
+            await ReloadAsync();
+        }
+        catch (Exception ex)
+        {
+            _error = ex.Message;
+        }
+    }
+}

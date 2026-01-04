@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebPortal.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:WebPortal.Domain.Common.IAuditable">
+            <summary>
+            Marker for entities with CreatedAt/UpdatedAt timestamps.
+            </summary>
+        </member>
+        <member name="P:WebPortal.Domain.Entities.Link.RolePrefix">
+            <summary>
+            RBAC role prefix required to see this link.
+            Example: "SMS_" or "REPORT_".
+            </summary>
+        </member>
+        <member name="T:WebPortal.Domain.Entities.UserCategoryState">
+            <summary>
+            Per-user UI state for a category.
+            Persists "collapse/expand" across sessions.
+            </summary>
+        </member>
+        <member name="T:WebPortal.Domain.Enums.ViewMode">
+            <summary>
+            User-selected portal view mode.
+            Stored in SQL as NVARCHAR(20) with values "Grid" or "List".
+            </summary>
+        </member>
+        <member name="T:WebPortal.Domain.Guards.RolePrefixGuard">
+            <summary>
+            RBAC helper based on Role Prefix rule (SRS 3.4).
+            A user can see a link if they own at least one role whose text starts with the link's RolePrefix.
+            Example: RolePrefix="SMS_" matches role "SMS_ADMIN".
+            </summary>
+        </member>
+        <member name="T:WebPortal.Domain.Guards.UrlSecurityGuard">
+            <summary>
+            Security rules for link URLs.
+            SRS requires blocking script schemes such as "javascript:" and "data:" at minimum.
+            </summary>
+        </member>
+        <member name="M:WebPortal.Domain.Guards.UrlSecurityGuard.TryGetDomain(System.String)">
+            <summary>
+            Extracts the domain/host from an URL. Returns empty string if not parsable.
+            </summary>
+        </member>
+    </members>
+</doc>

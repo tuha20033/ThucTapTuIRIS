@@ -1,0 +1,2 @@
+obj\Debug\net8.0\Protos/Portal.cs \
+obj\Debug\net8.0\Protos/PortalGrpc.cs: Protos/portal.proto

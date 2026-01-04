@@ -1,0 +1,563 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc\\WebPortal.Grpc.csproj": {}
+  },
+  "projects": {
+    "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj",
+        "projectName": "WebPortal.Application",
+        "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj": {
+                "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Google.Protobuf": "3.25.3",
+            "Grpc.AspNetCore": "2.64.0",
+            "Grpc.Core.Api": "2.64.0",
+            "Grpc.Net.Client": "2.64.0",
+            "Grpc.Tools": "2.64.0",
+            "Microsoft.EntityFrameworkCore": "8.0.6",
+            "Microsoft.EntityFrameworkCore.Design": "8.0.6",
+            "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+            "Microsoft.Extensions.Caching.Memory": "8.0.0",
+            "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "8.0.0",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+            "MudBlazor": "8.15.0",
+            "StackExchange.Redis": "2.8.16"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj",
+        "projectName": "WebPortal.Domain",
+        "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "centralPackageVersions": {
+            "Google.Protobuf": "3.25.3",
+            "Grpc.AspNetCore": "2.64.0",
+            "Grpc.Core.Api": "2.64.0",
+            "Grpc.Net.Client": "2.64.0",
+            "Grpc.Tools": "2.64.0",
+            "Microsoft.EntityFrameworkCore": "8.0.6",
+            "Microsoft.EntityFrameworkCore.Design": "8.0.6",
+            "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+            "Microsoft.Extensions.Caching.Memory": "8.0.0",
+            "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "8.0.0",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+            "MudBlazor": "8.15.0",
+            "StackExchange.Redis": "2.8.16"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\WebPortal.Grpc.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\WebPortal.Grpc.Contracts.csproj",
+        "projectName": "WebPortal.Grpc.Contracts",
+        "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\WebPortal.Grpc.Contracts.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.25.3, )",
+              "versionCentrallyManaged": true
+            },
+            "Grpc.Core.Api": {
+              "target": "Package",
+              "version": "[2.64.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Grpc.Tools": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.64.0, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Google.Protobuf": "3.25.3",
+            "Grpc.AspNetCore": "2.64.0",
+            "Grpc.Core.Api": "2.64.0",
+            "Grpc.Net.Client": "2.64.0",
+            "Grpc.Tools": "2.64.0",
+            "Microsoft.EntityFrameworkCore": "8.0.6",
+            "Microsoft.EntityFrameworkCore.Design": "8.0.6",
+            "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+            "Microsoft.Extensions.Caching.Memory": "8.0.0",
+            "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "8.0.0",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+            "MudBlazor": "8.15.0",
+            "StackExchange.Redis": "2.8.16"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc\\WebPortal.Grpc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc\\WebPortal.Grpc.csproj",
+        "projectName": "WebPortal.Grpc",
+        "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc\\WebPortal.Grpc.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj": {
+                "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj"
+              },
+              "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\WebPortal.Grpc.Contracts.csproj": {
+                "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Grpc.Contracts\\WebPortal.Grpc.Contracts.csproj"
+              },
+              "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Infrastructure\\WebPortal.Infrastructure.csproj": {
+                "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Infrastructure\\WebPortal.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.64.0, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Google.Protobuf": "3.25.3",
+            "Grpc.AspNetCore": "2.64.0",
+            "Grpc.Core.Api": "2.64.0",
+            "Grpc.Net.Client": "2.64.0",
+            "Grpc.Tools": "2.64.0",
+            "Microsoft.EntityFrameworkCore": "8.0.6",
+            "Microsoft.EntityFrameworkCore.Design": "8.0.6",
+            "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+            "Microsoft.Extensions.Caching.Memory": "8.0.0",
+            "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "8.0.0",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+            "MudBlazor": "8.15.0",
+            "StackExchange.Redis": "2.8.16"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Infrastructure\\WebPortal.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Infrastructure\\WebPortal.Infrastructure.csproj",
+        "projectName": "WebPortal.Infrastructure",
+        "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Infrastructure\\WebPortal.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "centralPackageVersionsManagementEnabled": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj": {
+                "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Application\\WebPortal.Application.csproj"
+              },
+              "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj": {
+                "projectPath": "E:\\Thực Tập IRIS\\WebPortal\\WebPortal.Domain\\WebPortal.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "versionCentrallyManaged": true
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.16, )",
+              "versionCentrallyManaged": true
+            }
+          },
+          "centralPackageVersions": {
+            "Google.Protobuf": "3.25.3",
+            "Grpc.AspNetCore": "2.64.0",
+            "Grpc.Core.Api": "2.64.0",
+            "Grpc.Net.Client": "2.64.0",
+            "Grpc.Tools": "2.64.0",
+            "Microsoft.EntityFrameworkCore": "8.0.6",
+            "Microsoft.EntityFrameworkCore.Design": "8.0.6",
+            "Microsoft.EntityFrameworkCore.SqlServer": "8.0.6",
+            "Microsoft.Extensions.Caching.Memory": "8.0.0",
+            "Microsoft.Extensions.Configuration.Abstractions": "8.0.0",
+            "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "8.0.0",
+            "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+            "Microsoft.Extensions.Options.ConfigurationExtensions": "8.0.0",
+            "MudBlazor": "8.15.0",
+            "StackExchange.Redis": "2.8.16"
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

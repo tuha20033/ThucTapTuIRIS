@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebPortal.Grpc.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:WebPortal.Grpc.Contracts.PortalReflection">
+            <summary>Holder for reflection information generated from Protos/portal.proto</summary>
+        </member>
+        <member name="P:WebPortal.Grpc.Contracts.PortalReflection.Descriptor">
+            <summary>File descriptor for Protos/portal.proto</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.UrlFieldNumber">
+            <summary>Field number for the "url" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.IconFieldNumber">
+            <summary>Field number for the "icon" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.ColorFieldNumber">
+            <summary>Field number for the "color" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.TagsFieldNumber">
+            <summary>Field number for the "tags" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.RolePrefixFieldNumber">
+            <summary>Field number for the "rolePrefix" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.CategoryIdFieldNumber">
+            <summary>Field number for the "categoryId" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.IsPinnedFieldNumber">
+            <summary>Field number for the "isPinned" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalLink.DomainFieldNumber">
+            <summary>Field number for the "domain" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalCategory.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalCategory.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalCategory.DescriptionFieldNumber">
+            <summary>Field number for the "description" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalCategory.DefaultPriorityFieldNumber">
+            <summary>Field number for the "defaultPriority" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalCategory.IsCollapsedFieldNumber">
+            <summary>Field number for the "isCollapsed" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.PortalCategory.LinksFieldNumber">
+            <summary>Field number for the "links" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalRequest.SearchTextFieldNumber">
+            <summary>Field number for the "searchText" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalResponse.UserIdFieldNumber">
+            <summary>Field number for the "userId" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalResponse.UserNameFieldNumber">
+            <summary>Field number for the "userName" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalResponse.ViewModeFieldNumber">
+            <summary>Field number for the "viewMode" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalResponse.PinnedLinksFieldNumber">
+            <summary>Field number for the "pinnedLinks" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalResponse.CategoriesFieldNumber">
+            <summary>Field number for the "categories" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.GetPortalResponse.GeneratedAtUtcFieldNumber">
+            <summary>Field number for the "generatedAtUtc" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkIdRequest.LinkIdFieldNumber">
+            <summary>Field number for the "linkId" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.SetViewModeRequest.ModeFieldNumber">
+            <summary>Field number for the "mode" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.SetOrderRequest.IdsFieldNumber">
+            <summary>Field number for the "ids" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryUpsertRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:WebPortal.Grpc.Contracts.CategoryUpsertRequest.Id">
+            <summary>
+            empty for create
+            </summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryUpsertRequest.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryUpsertRequest.DescriptionFieldNumber">
+            <summary>Field number for the "description" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryUpsertRequest.PriorityFieldNumber">
+            <summary>Field number for the "priority" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryUpsertRequest.IsActiveFieldNumber">
+            <summary>Field number for the "isActive" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:WebPortal.Grpc.Contracts.LinkUpsertRequest.Id">
+            <summary>
+            empty for create
+            </summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.UrlFieldNumber">
+            <summary>Field number for the "url" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.IconFieldNumber">
+            <summary>Field number for the "icon" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.ColorFieldNumber">
+            <summary>Field number for the "color" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.TagsFieldNumber">
+            <summary>Field number for the "tags" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.PriorityFieldNumber">
+            <summary>Field number for the "priority" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.RolePrefixFieldNumber">
+            <summary>Field number for the "rolePrefix" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.IsActiveFieldNumber">
+            <summary>Field number for the "isActive" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkUpsertRequest.CategoryIdFieldNumber">
+            <summary>Field number for the "categoryId" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryDto.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryDto.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryDto.DescriptionFieldNumber">
+            <summary>Field number for the "description" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryDto.PriorityFieldNumber">
+            <summary>Field number for the "priority" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.CategoryDto.IsActiveFieldNumber">
+            <summary>Field number for the "isActive" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.UrlFieldNumber">
+            <summary>Field number for the "url" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.IconFieldNumber">
+            <summary>Field number for the "icon" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.ColorFieldNumber">
+            <summary>Field number for the "color" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.TagsFieldNumber">
+            <summary>Field number for the "tags" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.PriorityFieldNumber">
+            <summary>Field number for the "priority" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.RolePrefixFieldNumber">
+            <summary>Field number for the "rolePrefix" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.IsActiveFieldNumber">
+            <summary>Field number for the "isActive" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.LinkDto.CategoryIdFieldNumber">
+            <summary>Field number for the "categoryId" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.ListCategoriesResponse.ItemsFieldNumber">
+            <summary>Field number for the "items" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.ListLinksResponse.ItemsFieldNumber">
+            <summary>Field number for the "items" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.SetActiveRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.SetActiveRequest.IsActiveFieldNumber">
+            <summary>Field number for the "isActive" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.SetCategoryCollapsedRequest.CategoryIdFieldNumber">
+            <summary>Field number for the "categoryId" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.SetCategoryCollapsedRequest.IsCollapsedFieldNumber">
+            <summary>Field number for the "isCollapsed" field.</summary>
+        </member>
+        <member name="F:WebPortal.Grpc.Contracts.IdRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:WebPortal.Grpc.Contracts.PortalGrpc.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcBase">
+            <summary>Base class for server-side implementations of PortalGrpc</summary>
+        </member>
+        <member name="T:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcClient">
+            <summary>Client for PortalGrpc</summary>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for PortalGrpc</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for PortalGrpc that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.BindService(WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.PortalGrpc.BindService(Grpc.Core.ServiceBinderBase,WebPortal.Grpc.Contracts.PortalGrpc.PortalGrpcBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="P:WebPortal.Grpc.Contracts.AdminGrpc.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcBase">
+            <summary>Base class for server-side implementations of AdminGrpc</summary>
+        </member>
+        <member name="T:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcClient">
+            <summary>Client for AdminGrpc</summary>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for AdminGrpc</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for AdminGrpc that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.BindService(WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:WebPortal.Grpc.Contracts.AdminGrpc.BindService(Grpc.Core.ServiceBinderBase,WebPortal.Grpc.Contracts.AdminGrpc.AdminGrpcBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+    </members>
+</doc>

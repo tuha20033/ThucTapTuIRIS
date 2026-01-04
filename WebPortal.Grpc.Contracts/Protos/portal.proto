@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+option csharp_namespace = "WebPortal.Grpc.Contracts";
+package webportal.grpc;
+
+message Empty {}
+
+enum ViewMode {
+  VIEW_MODE_GRID = 0;
+  VIEW_MODE_LIST = 1;
+}
+
+message PortalLink {
+  string id = 1;
+  string name = 2;
+  string url = 3;
+  string icon = 4;
+  string color = 5;
+  string tags = 6;
+  string rolePrefix = 7;
+  string categoryId = 8;
+  bool isPinned = 9;
+  string domain = 10;
+}
+
+message PortalCategory {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  int32 defaultPriority = 4;
+  bool isCollapsed = 5;
+  repeated PortalLink links = 6;
+}
+
+message GetPortalRequest {
+  string searchText = 1;
+}
+
+message GetPortalResponse {
+  string userId = 1;
+  string userName = 2;
+  ViewMode viewMode = 3;
+  repeated PortalLink pinnedLinks = 4;
+  repeated PortalCategory categories = 5;
+  string generatedAtUtc = 6;
+}
+
+message LinkIdRequest {
+  string linkId = 1;
+}
+
+message SetViewModeRequest {
+  ViewMode mode = 1;
+}
+
+message SetOrderRequest {
+  repeated string ids = 1;
+}
+
+message CategoryUpsertRequest {
+  string id = 1; 
+  string name = 2;
+  string description = 3;
+  int32 priority = 4;
+  bool isActive = 5;
+}
+
+message LinkUpsertRequest {
+  string id = 1; 
+  string name = 2;
+  string url = 3;
+  string icon = 4;
+  string color = 5;
+  string tags = 6;
+  int32 priority = 7;
+  string rolePrefix = 8;
+  bool isActive = 9;
+  string categoryId = 10;
+}
+
+message CategoryDto {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  int32 priority = 4;
+  bool isActive = 5;
+}
+
+message LinkDto {
+  string id = 1;
+  string name = 2;
+  string url = 3;
+  string icon = 4;
+  string color = 5;
+  string tags = 6;
+  int32 priority = 7;
+  string rolePrefix = 8;
+  bool isActive = 9;
+  string categoryId = 10;
+}
+
+message ListCategoriesResponse {
+  repeated CategoryDto items = 1;
+}
+
+message ListLinksResponse {
+  repeated LinkDto items = 1;
+}
+
+message SetActiveRequest {
+  string id = 1;
+  bool isActive = 2;
+}
+
+service PortalGrpc {
+  rpc GetPortal (GetPortalRequest) returns (GetPortalResponse);
+  rpc PinLink (LinkIdRequest) returns (Empty);
+  rpc UnpinLink (LinkIdRequest) returns (Empty);
+  rpc SetViewMode (SetViewModeRequest) returns (Empty);
+  rpc SetLinkOrder (SetOrderRequest) returns (Empty);
+  rpc SetCategoryOrder (SetOrderRequest) returns (Empty);
+  rpc SetCategoryCollapsed (SetCategoryCollapsedRequest) returns (Empty);
+}
+
+service AdminGrpc {
+  rpc ListCategories (Empty) returns (ListCategoriesResponse);
+  rpc ListLinks (Empty) returns (ListLinksResponse);
+
+  rpc UpsertCategory (CategoryUpsertRequest) returns (CategoryDto);
+  rpc UpsertLink (LinkUpsertRequest) returns (LinkDto);
+
+  rpc SetCategoryActive (SetActiveRequest) returns (Empty);
+  rpc SetLinkActive (SetActiveRequest) returns (Empty);
+
+  rpc DeleteCategory (IdRequest) returns (Empty);
+  rpc DeleteLink (IdRequest) returns (Empty);
+}
+
+message SetCategoryCollapsedRequest {
+  string categoryId = 1;
+  bool isCollapsed = 2;
+}
+
+message IdRequest {
+  string id = 1;
+}
