@@ -43,7 +43,7 @@ public sealed class HybridCacheService : ICacheService
             }
             catch
             {
-                // Fallback to memory
+                
             }
         }
 
@@ -79,7 +79,7 @@ public sealed class HybridCacheService : ICacheService
             }
             catch
             {
-                // ignore
+                
             }
         }
 
