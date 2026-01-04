@@ -9,12 +9,7 @@ using WebPortal.Application.Abstractions.Caching;
 
 namespace WebPortal.Infrastructure.Caching;
 
-/// <summary>
-/// Cache service backed by Redis (preferred) with an in-memory fallback.
-/// The portal uses cache for:
-/// - active catalog (Categories/Links)
-/// - user workspace (Favorites/Orders)
-/// </summary>
+
 public sealed class HybridCacheService : ICacheService
 {
     private readonly IMemoryCache _memory;
@@ -67,7 +62,7 @@ public sealed class HybridCacheService : ICacheService
             }
             catch
             {
-                // ignore and fallback to memory
+                
             }
         }
 
