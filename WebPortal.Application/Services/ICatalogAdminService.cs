@@ -18,9 +18,8 @@ public interface ICatalogAdminService
     Task SetCategoryActiveAsync(Guid categoryId, bool isActive, CancellationToken ct = default);
     Task SetLinkActiveAsync(Guid linkId, bool isActive, CancellationToken ct = default);
 
-    /// <summary>Hard delete (will throw if constrained; e.g. category has links).</summary>
+
     Task DeleteCategoryAsync(Guid categoryId, CancellationToken ct = default);
 
-    /// <summary>Hard delete.</summary>
     Task DeleteLinkAsync(Guid linkId, CancellationToken ct = default);
 }
