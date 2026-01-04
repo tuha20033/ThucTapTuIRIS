@@ -15,11 +15,8 @@ public interface ICategoryRepository
     Task<Category> CreateAsync(Category category, CancellationToken ct = default);
     Task UpdateAsync(Category category, CancellationToken ct = default);
 
-    /// <summary>Soft delete via IsActive=false.</summary>
+
     Task SetActiveAsync(Guid id, bool isActive, CancellationToken ct = default);
 
-    /// <summary>
-    /// Hard delete. Will throw if constrained by existing child records (e.g. links).
-    /// </summary>
     Task DeleteAsync(Guid id, CancellationToken ct = default);
 }
